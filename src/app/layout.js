@@ -3,8 +3,8 @@ import "./globals.css";
 import Providers from "./Providers";
 import Header from "src/components/Header";
 import Navbar from "src/components/Navbar";
-import SearchBox from "src/components/SearchBox";
 import { Suspense } from "react";
+import SearchBox from "src/components/SearchBox";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,8 +20,12 @@ export default function RootLayout({ children }) {
         <Providers>
           <Header />
           <Navbar />
-          <SearchBox />
-          <Suspense fallback={<div>Loading...</div>}>
+          {/* Wrapping SearchBox with Suspense */}
+          <Suspense fallback={<div>Loading SearchBox...</div>}>
+            <SearchBox />
+          </Suspense>
+          {/* Wrapping children with Suspense */}
+          <Suspense fallback={<div>Loading Page Content...</div>}>
             {children}
           </Suspense>
         </Providers>
